@@ -1,0 +1,126 @@
+{
+    "InternalWalletAddresses": [
+
+        {
+            "walletname":"Genesis Wallet",
+            "address":"0x8d3acc04be4fc16197a5fbca4717e3f6300a78bd"
+        },
+
+        {
+            "walletname":"Employee/Investor/SAFT",
+            "address":"0xf743ef9c5361f3c6d225e052907f91ef66f97778" 
+        },
+
+        {
+            "walletname":"Operations (for Audience Growth)",
+            "address":"0x6d80D85A9B9b4D4e8dCCfA5dE87b818C33b09e71" 
+        },
+
+        {
+            "walletname":"Corporate",
+            "address":"0xd06909cbe19d50ef2edd534638490d01a834f05b" 
+        },
+
+        {
+            "walletname":"My.Permission.io Wallet",
+            "address":"0xd06909cbe19d50ef2edd534638490d01a834f05b" 
+        },
+
+        {
+            "walletname":"Campaign Wallet",
+            "address":"0x45a37259eaaa7ad7661379ac01f9c3ea6e3abced" 
+        },
+
+        {
+            "walletname":"Refunds@permission.io Wallet",
+            "address":"0x2cca3db6fd524fc0cbbae0cc98a4fd5949017a6d" 
+        },
+
+        {
+            "walletname":"Foundation Wallett",
+            "address":"0xBe7A35A33330F0F8b21a3faA6c4cF002Ff1FBaCA" 
+
+        },
+
+        {
+            "walletname":"Contract Factory",
+            "address":"0x0174Cd78C99078b02393f02F798Bc124e5878F35" 
+        },
+
+        {
+            "walletname":"Contract Factory Creator Wallet",
+            "address":"0x1da0075a7a0cb9312a771387acc175b163b1b93a" 
+        },
+
+        {
+            "walletname":"Reserve Wallet",
+            "address":"0x91b997993523119652988ab044b71a4b93a26594" 
+        },
+
+        {
+            "walletname":"Default",
+            "address":"0x3F6724278d4398d4DE2B4830683453e8D24307a6" 
+        },
+
+        {
+            "walletname":"Permission.io - Operations",
+            "address":"0x8994e0bDB9bB83310245d5818039562CD2445919" 
+        },
+
+        {
+            "walletname":"Permission.io - Treasury",
+            "address":"0x1d2b5055fce4676ee3ed2110E162C65fbC8Ce21F" 
+        },
+
+        {
+            "walletname":"Permission.io - User Distribution",
+            "address":"0x896dE97f04544Ea7442a4903Dd596318587691E9" 
+        },
+
+        {
+            "walletname":"API - Wallet",
+            "address":"0x9DFE6d3b993994E1895cc2F2FF2305D06b6DF332" 
+        },
+
+        {
+            "walletname":"Permission.io - FTIs class A",
+            "address":"0x6EA929DD71d7203bbf14077385c0E813550a2036" 
+        },
+
+        {
+            "walletname":"Permission.io - FTIs class B",
+            "address":"0xD773Bde9dB19BD24B32e4ca3A0A74A046bC09F21" 
+        },
+
+        {
+            "walletname":"Permission.io - Media Allocations",
+            "address":"0x52805D4f94f2190227471ADBf791Ab28B769842e" 
+        },
+
+        {
+            "walletname":"Swiss Association - Treasury)",
+            "address":"0x5fEC13ab709c08E754a88FEfc6cC7Fe0d1609D90" 
+        },
+
+        {
+            "walletname":"Swiss Association - Community Incentives",
+            "address":"0x22e6B3d26523c7f5538061D74164a0d4da3a3e07" 
+        },
+
+        {
+            "walletname":"Swiss Association - Operations",
+            "address":"0xbe1bB388eCFd853E455c428158eC9E04E99AcA54" 
+        },
+
+        {
+            "walletname":"Swiss Association - Token Sales",
+            "address":"0xF0033b16bfd9B5988cf375127B2b0BfFa6010C78" 
+        },
+
+        {
+            "walletname":"Metamask - Operation",
+            "address":"0x46d385FE3865AB1454Eb46BcdAD43cfEC6AeC535" 
+        }
+
+    ]
+}
