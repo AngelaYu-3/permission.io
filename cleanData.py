@@ -46,6 +46,9 @@ def main():
    confirmed_filter = df["Sub-Status"] == 'CONFIRMED'
    df = df[confirmed_filter]
 
+   api_filter = df["Source"] != 'API - Wallet'
+   df = df[api_filter]
+
    # filtering out data where both source and address are NOT in addressBook 
    source_address_filter = df["Source Address"].isin(addressBook)
    destination_address_filter = df["Destination Address"].isin(addressBook)
