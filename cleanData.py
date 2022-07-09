@@ -1,7 +1,7 @@
 import pandas as pd
 import json as j
 
-filename = 'testData.csv'
+filename = 'data/testData1.csv'
 addBook = open('addressBook.json')
 addBook = j.load(addBook)
 addressBook = []
@@ -46,6 +46,7 @@ def main():
    confirmed_filter = df["Sub-Status"] == 'CONFIRMED'
    df = df[confirmed_filter]
 
+   # filtering out API-Wallet under Source tab
    api_filter = df["Source"] != 'API - Wallet'
    df = df[api_filter]
 
@@ -61,7 +62,7 @@ def main():
    for r in range(numRows):
       df.iat[r, 0] = transactionType(df.iat[r, 16], df.iat[r, 19])
 
-   df.to_csv('cleanTestData.csv')
+   df.to_csv('data/cleanTestData.csv')
    
 
 if __name__ == '__main__':
