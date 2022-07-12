@@ -122,5 +122,13 @@
             "address":"0x46d385FE3865AB1454Eb46BcdAD43cfEC6AeC535" 
         }
 
+    ],
+
+    "Input_Output": [
+
+        {
+            "input": "data/testData1.csv",
+            "output": "data/cleanTestData.csv"
+        }
     ]
 }
