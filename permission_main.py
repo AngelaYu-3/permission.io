@@ -1,9 +1,14 @@
-import cleanData
-filename = 'data/testData1.csv'
+import jsonReader
+import cleanedData
+
 
 def main():
-    # cleaning data based on inputted raw data
-    cleanData.clean_data(filename)
+
+    dc = jsonReader.JsonReader()
+
+    cd = cleanedData.CleanedData(dc)
+    cd.clean_data()
+
 
 if __name__ == '__main__':
     main()
