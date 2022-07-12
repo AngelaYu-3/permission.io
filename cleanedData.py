@@ -1,24 +1,68 @@
+"""
+This class cleans data pulled from the read in config.json file per this table: 
+
+IN - address shows wallet is internal
+OUT - address shows wallet is not in internal wallet
+BRIDGE - address shows wallet is bridge wallet 
+
+___________________________________________________________________________
+Source  |Destination  |Data Kept (y/n) |Type
+___________________________________________________________________________
+IN      |IN           |y               |transfer
+___________________________________________________________________________
+IN      |OUT          |y               |withdraw
+___________________________________________________________________________
+IN      |BRIDGE       |y               |transfer
+___________________________________________________________________________
+OUT     |IN           |y               |deposit
+___________________________________________________________________________
+OUT     |OUT          |n               |N/A
+___________________________________________________________________________
+OUT     |BRIDGE       |y               |deposit
+___________________________________________________________________________
+BRIDGE  |IN           |y               |transfer
+___________________________________________________________________________
+BRIDGE  |OUT          |y               |withdraw
+"""
+
 import pandas as pd
 
 class CleanedData():
 
+   # sourceAddress column index 
    global sourceColIndex 
    sourceColIndex = 16
 
+   # destinatinoAddress column index
    global destColIndex 
    destColIndex = 19
 
+   """
+   @jsonRead: a JsonReader object 
+
+   saves JsonReader object as an instance variable
+   creates an AddressDictionary and saves it as an instance variable 
+   """
    def __init__(self, jsonRead):
       self.jsonRead = jsonRead
       self.jsonRead.toAddressDic()
       self.addressDic = self.jsonRead.getAddressDic()
 
-   # determines if in_address is an internal wallet address 
+   """
+   @in_address: input address 
+
+   determines if in_address is an internal wallet address by looking through addressDic values 
+   """
    def _isInAddressBook(self, in_address):
       if in_address in self.addressDic.values(): return True
       else: return False
 
-   # compares relationship between source + destination addresses to determine transaction type
+   """
+   @source: source address 
+   @destination: destination address
+
+   compares relationship between source + destination addresses to determine transaction type
+   """
    def _getTransactionType(self, source, destination):
       isSource = self._isInAddressBook(source)
       isDestin = self._isInAddressBook(destination)
@@ -36,19 +80,23 @@ class CleanedData():
          return 'TRANSFER'
 
 
+   """
+   cleans data and outputs a cleanData csv sheet
+   """
    def clean_data(self):
+      # reading in inputfile as a csv, removing index column, and making sure N/A doesn't become NaN
       df = pd.read_csv(self.jsonRead.getInputFile(), index_col=False, keep_default_na=False)
 
-      # filtering for CONFIRMED under sub-status for all data
+      # filters for CONFIRMED under sub-status 
       confirmed_filter = df["Sub-Status"] == 'CONFIRMED'
       df = df[confirmed_filter]
       
 
-      # filtering out API-Wallet under Source tab
+      # filters out API-Wallet under Source tab
       api_filter = df["Source"] != 'API - Wallet'
       df = df[api_filter]
 
-      # filtering out data where both source and address are NOT in addressBook 
+      # filters out data where both source and address are NOT in addressBook 
       source_address_filter = df["Source Address"].isin(self.addressDic.values())
       destination_address_filter = df["Destination Address"].isin(self.addressDic.values())
       all_address_filter = source_address_filter | destination_address_filter
@@ -60,4 +108,5 @@ class CleanedData():
       for r in range(numRows):
          df.iat[r, 0] = self._getTransactionType(df.iat[r, sourceColIndex], df.iat[r, destColIndex])
 
+      # saving cleaned data in a new csv file
       df.to_csv(self.jsonRead.getOutputFile(), index=False)
