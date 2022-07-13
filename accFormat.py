@@ -11,7 +11,7 @@ class AccFormat:
     @clean_data: from which reformatted data is taken from
     creates a new accFormat dataFrame, fills in the columns of the dataFrame, and saves the new dataFrame as a csv file
     """
-    def __init__ (self,jsonRead, clean_data):
+    def __init__ (self, jsonRead, clean_data):
         self.clean_data = clean_data
         self.jsonRead = jsonRead
         self.accFormat = pd.DataFrame(columns=['type', 'date', 'rQty', 'rPrice', 'sQty', 'sPrice', 'fQty', 'fPrice', 
@@ -39,10 +39,28 @@ class AccFormat:
         f_sQtyCol = 4
         f_rWallet = 9
         f_sWallet = 11
+
+        # "amount" column in clean data file
         c_amount = 8
+        # "destination" column in clean data file
         c_destination = 18
+        # "source" column in clean data file
         c_source = 15
 
+        """
+            If transaction type is TRANSFER:
+                - put amount in both "rQty" and "sQty"
+                - put destination in "rWallet"
+                - put source in "sWallet"
+
+            If transaction type is WITHDRAW:
+                - put amount in "sQty"
+                - put source in "sWallet"
+
+            If transaction type is DEPOSIT:
+                - put amount in "rQty"
+                - put destination in "rWallet"
+        """
         for r in range(numRows):
             tran_type = self.accFormat.iat[r, 0]
             if tran_type == "TRANSFER":

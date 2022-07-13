@@ -54,8 +54,10 @@ class CleanedData():
    determines if in_address is an internal wallet address by looking through addressDic values 
    """
    def __isInAddressBook(self, in_address):
-      if in_address in self.addressDic.values(): return True
-      else: return False
+      if in_address in self.addressDic.values(): 
+         return True
+      else: 
+         return False
 
    """
    @source: source address 
