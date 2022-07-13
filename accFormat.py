@@ -79,7 +79,7 @@ class AccFormat:
 
             if source_add != "N/A":
                 self.accFormat.iat[r, f_sWallet] = self.clean_data.iat[r, c_source]
-            else:
+            if source_add == "External":
                 self.accFormat.iat[r, f_sWallet] = self.clean_data.iat[r, c_sourceAdd]
 
             if dest_add != "N/A":
