@@ -46,6 +46,8 @@ class AccFormat:
         c_destination = 18
         # "source" column in clean data file
         c_source = 15
+        c_sourceAdd = 16
+        c_destinationAdd = 19
 
         """
             If transaction type is TRANSFER:
@@ -63,15 +65,26 @@ class AccFormat:
         """
         for r in range(numRows):
             tran_type = self.accFormat.iat[r, 0]
+            source_add = self.clean_data.iat[r, c_source]
+            dest_add = self.clean_data.iat[r, c_destination]
+
             if tran_type == "TRANSFER":
                 self.accFormat.iat[r, f_rQtyCol] = self.clean_data.iat[r, c_amount]
                 self.accFormat.iat[r, f_sQtyCol] = self.clean_data.iat[r, c_amount]
-                self.accFormat.iat[r, f_rWallet] = self.clean_data.iat[r, c_destination]
-                self.accFormat.iat[r, f_sWallet] = self.clean_data.iat[r, c_source]
             elif tran_type == "WITHDRAW":
                 self.accFormat.iat[r, f_sQtyCol] = self.clean_data.iat[r, c_amount]
-                self.accFormat.iat[r, f_sWallet] = self.clean_data.iat[r, c_source]
             elif tran_type == "DEPOSIT":
                 self.accFormat.iat[r, f_rQtyCol] = self.clean_data.iat[r, c_amount]
+
+
+            if source_add != "N/A":
+                self.accFormat.iat[r, f_sWallet] = self.clean_data.iat[r, c_source]
+            else:
+                self.accFormat.iat[r, f_sWallet] = self.clean_data.iat[r, c_sourceAdd]
+
+            if dest_add != "N/A":
                 self.accFormat.iat[r, f_rWallet] = self.clean_data.iat[r, c_destination]
+            else:
+                self.accFormat.iat[r, f_rWallet] = self.clean_data.iat[r, c_destinationAdd]
+            
     
