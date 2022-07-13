@@ -4,6 +4,7 @@ This is the main file from which the program is executed
 
 import jsonReader
 import cleanedData
+import accFormat
 
 def main():
 
@@ -14,7 +15,9 @@ def main():
     # creating a cleanedData object that takes in jsonReader object
     # cleaning data per guidelines listed in cleanData.py
     cd = cleanedData.CleanedData(dc)
-    cd.clean_data()
+
+    # putting cleaned data in accountFormat format
+    accFormat.AccFormat(dc, cd.getCleanDataDf())
 
 
 if __name__ == '__main__':

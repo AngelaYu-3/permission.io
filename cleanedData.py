@@ -45,15 +45,15 @@ class CleanedData():
    """
    def __init__(self, jsonRead):
       self.jsonRead = jsonRead
-      self.jsonRead.toAddressDic()
       self.addressDic = self.jsonRead.getAddressDic()
+      self.__clean_data()
 
    """
    @in_address: input address 
 
    determines if in_address is an internal wallet address by looking through addressDic values 
    """
-   def _isInAddressBook(self, in_address):
+   def __isInAddressBook(self, in_address):
       if in_address in self.addressDic.values(): return True
       else: return False
 
@@ -63,9 +63,9 @@ class CleanedData():
 
    compares relationship between source + destination addresses to determine transaction type
    """
-   def _getTransactionType(self, source, destination):
-      isSource = self._isInAddressBook(source)
-      isDestin = self._isInAddressBook(destination)
+   def __getTransactionType(self, source, destination):
+      isSource = self.__isInAddressBook(source)
+      isDestin = self.__isInAddressBook(destination)
 
       if (isSource is False) and (isDestin is False):
          return 'N/A'
@@ -79,11 +79,13 @@ class CleanedData():
       elif (isSource is True) and (isDestin is True):
          return 'TRANSFER'
 
+   def getCleanDataDf(self):
+      return self.clean_data_df
 
    """
    cleans data and outputs a cleanData csv sheet
    """
-   def clean_data(self):
+   def __clean_data(self):
       # reading in inputfile as a csv, removing index column, and making sure N/A doesn't become NaN
       df = pd.read_csv(self.jsonRead.getInputFile(), index_col=False, keep_default_na=False)
 
@@ -106,7 +108,9 @@ class CleanedData():
       numRows = len(df)
       df.insert(0, "Transaction Type", "N/A")
       for r in range(numRows):
-         df.iat[r, 0] = self._getTransactionType(df.iat[r, sourceColIndex], df.iat[r, destColIndex])
+         df.iat[r, 0] = self.__getTransactionType(df.iat[r, sourceColIndex], df.iat[r, destColIndex])
+
+      self.clean_data_df = df
 
       # saving cleaned data in a new csv file
       df.to_csv(self.jsonRead.getOutputFile(), index=False)
