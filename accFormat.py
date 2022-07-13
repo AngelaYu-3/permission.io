@@ -52,16 +52,23 @@ class AccFormat:
         """
             If transaction type is TRANSFER:
                 - put amount in both "rQty" and "sQty"
-                - put destination in "rWallet"
-                - put source in "sWallet"
 
             If transaction type is WITHDRAW:
                 - put amount in "sQty"
-                - put source in "sWallet"
 
             If transaction type is DEPOSIT:
                 - put amount in "rQty"
-                - put destination in "rWallet"
+
+
+            If sourceAddress is External:
+                - put sourceAdress is source col of accFormat
+            Otherwise:
+                - put walletName
+
+            If destAddress is N/A:
+                - put destAddress is source col of accFormat
+            Otherwise:
+                - put walletName
         """
         for r in range(numRows):
             tran_type = self.accFormat.iat[r, 0]
