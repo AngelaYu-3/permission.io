@@ -24,12 +24,12 @@ class JsonReader:
         json_file = open(args.Path)
         self.df = js.load(json_file)
         json_file.close()
-        self.toAddressDic()
+        self.__toAddressDic()
     
     """
     creates a dictionary with key value pairs of wallet + address pulled from config.json file
     """
-    def toAddressDic(self):
+    def __toAddressDic(self):
         self.new_dict = {}
 
         for i in self.df['InternalWalletAddresses']:
@@ -52,3 +52,9 @@ class JsonReader:
     """
     def getOutputFile(self):
         return self.df["Input_Output"][0]["output"]
+
+    """
+    returns accFormat file path
+    """
+    def getAccFormatFile(self):
+        return self.df["Input_Output"][0]["accFormat"]

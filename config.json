@@ -127,8 +127,9 @@
     "Input_Output": [
 
         {
-            "input": "data/testData1.csv",
-            "output": "data/cleanTestData.csv"
+            "input": "testing_data/testData.csv",
+            "output": "data_output/cleanData.csv",
+            "accFormat": "data_output/accFormat.csv"
         }
     ]
 }
